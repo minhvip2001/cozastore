@@ -1,24 +1,29 @@
 const Product = require('../models/Product');
-const { mutipleMongooseToOject } = require('../../util/mongoose');
+const { mongooseToObject } = require('../../util/mongoose');
 
 class ProductController {
   // [GET] /products
   index(req, res) {
-    res.render('product');
+    res.render('list_product', {
+      layout: 'admin/main',
+    });
   }
   // [GET] /products/:slug
   show(req, res, next) {
     Product.findOne({ slug: req.params.slug })
-      .then(products => {
+      .then((product) => {
         res.render('product-detail', {
           layout: 'website/detail',
+          product: mongooseToObject(product),
         });
-      }).catch(next)
-    
+      })
+      .catch(next);
   }
-  // [GET] /products/create
-  // create(req, res) {
-  //   res.send('Details');
-  // }
+  // [GET] admin/products/
+  create(req, res, next) {
+    res.render('add_product', {
+      layout: 'admin/main',
+    });
+  }
 }
 module.exports = new ProductController();
