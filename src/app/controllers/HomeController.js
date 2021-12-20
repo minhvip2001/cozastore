@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const Category = require('../models/Category');
 const { mutipleMongooseToOject } = require('../../util/mongoose');
 
 class HomeController {

@@ -1,19 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Category = new Schema({
+const Color = new Schema({
   name: {
     type: String,
     maxLength: 255,
     required: true,
-  },
-  description: {
-    type: String,
-    default: '',
-  },
-  slug: {
-    type: String,
-    unique: true,
   },
   status: {
     type: Boolean,
@@ -23,4 +15,4 @@ const Category = new Schema({
   timestamps: true,
 });
 
-module.exports = mongoose.model('Category', Category);
+module.exports = mongoose.model('Color', Color);
